@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iris Flower Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2 style="color: rgb(30, 30, 71);">Enter Iris Flower Features</h2>
+    <form method="POST" action="/predict" style="color: rgb(95, 3, 75); font-weight: bold;">
+        Sepal Length (cm): <input type="text" name="sepal_length"><br><br>
+        Sepal Width (cm): <input type="text" name="sepal_width"><br><br>
+        Petal Length (cm): <input type="text" name="petal_length"><br><br>
+        Petal Width (cm): <input type="text" name="petal_width"><br><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction is not none %}
+        <h3>Predicted class: {{ prediction }}</h3>
+    {% endif %}
+
+    {% if flower_name %}
+        <h3>Flower Name: {{ flower_name }}</h3>
+        <img src="{{ url_for('static', filename=image_file) }}" class="flower-image" width="200">
+    {% endif %}
+</body>
+</html>
